@@ -1,0 +1,61 @@
+.mainDetail{
+    display: flex; 
+    
+}
+
+.mainDetail-image{
+    width: 60%;
+   
+}
+.mainDetail-text{
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    margin: 0 8px;
+}
+
+
+.reviewsDetail{
+    font-size: 180%;
+}
+
+.reviewss{
+    display: flex;
+    align-items: center;
+}
+
+
+.propertys{
+    display: flex;
+}
+
+.price{
+    font-weight: bold;
+    font-size: 30px;
+}
+
+@media only screen and (max-width: 992px) {
+    .mainDetail{
+        flex-direction: column;
+    }  
+    .mainDetail-image{
+        width: 100%;
+      
+    }
+    .mainDetail-text{
+        width: 100%;
+    } 
+}
+
+.notResult{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40vh;
+    width: 100%;
+    box-shadow: 0 1px 4px 0 rgba(80, 80, 80, 0.16);
+    font-size: 20px;
+    text-align: center;
+    padding: 0 10px ;
+
+}

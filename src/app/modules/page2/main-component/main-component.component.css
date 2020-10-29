@@ -1,0 +1,11 @@
+.main-servicios{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+}
+
+.img-servicios{
+    height: 40vh;
+    width: 50vh;
+}

@@ -1,0 +1,220 @@
+<div class="row">
+  <div class="col-lg-3">
+    <h1 class="my-4">Busqueda</h1>
+    <div class="list-group">
+      <div class="input-group mb-3">
+        <input
+          type="text"
+          class="form-control"
+          (keyup)="$event.keyCode == 13 ? searchProducts() : null"
+          placeholder="Buscar Producto"
+          [(ngModel)]="textSearch"
+          aria-label="Recipient's username"
+          aria-describedby="basic-addon2"
+          maxlength="100"
+        />
+        <div class="input-group-append">
+          <button
+            class="btn btn-outline-secondary"
+            type="button"
+            (click)="searchProducts()"
+          >
+            Buscar
+          </button>
+        </div>
+      </div>
+
+      <div class="input-group mb-3">
+        <select
+          class="custom-select"
+          id="inputGroupSelect02"
+          [(ngModel)]="categorySelect"
+          (change)="ChangingValue($event)"
+        >
+          <option value="science">science</option>
+          <option value="education">education</option>
+          <option value="feelings">feelings</option>
+          <option value="computer">computer</option>
+          <option value="buildings">buildings</option>
+        </select>
+        <div class="input-group-append">
+          <label class="input-group-text" for="inputGroupSelect02"
+            >Categorias</label
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /.col-lg-3 -->
+
+  <div class="col-lg-9">
+    <div
+      id="carouselExampleIndicators"
+      class="carousel slide my-4"
+      data-ride="carousel"
+    >
+      <ol class="carousel-indicators">
+        <li
+          data-target="#carouselExampleIndicators"
+          data-slide-to="0"
+          class="active"
+        ></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner" role="listbox">
+        <div class="carousel-item active">
+          <img
+            class="d-block img-fluid"
+            src="http://lorempixel.com/900/300/technics/"
+            alt="First slide"
+          />
+        </div>
+        <div class="carousel-item">
+          <img
+            class="d-block img-fluid"
+            src="http://lorempixel.com/900/300/transport/"
+            alt="Second slide"
+          />
+        </div>
+        <div class="carousel-item">
+          <img
+            class="d-block img-fluid"
+            src="http://lorempixel.com/900/300/technics/"
+            alt="Third slide"
+          />
+        </div>
+      </div>
+      <a
+        class="carousel-control-prev"
+        href="#carouselExampleIndicators"
+        role="button"
+        data-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a
+        class="carousel-control-next"
+        href="#carouselExampleIndicators"
+        role="button"
+        data-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+
+    <div class="row">
+        <div  class="notResult" *ngIf="show" >
+          <span>No se encuentran resultados para tu busqueda, Intenta con otro criterio</span>
+        </div>
+      <div class="col-lg-4 col-md-6 mb-4" *ngFor="let product of products; let i = index" >
+        <div class="card h-100">
+          <a><img class="card-img-top" src="{{ product.webformatURL }}" alt="" /></a>
+          <div class="card-body">
+            <h4 class="card-title">
+              <a>Producto {{ product.id }}</a>
+            </h4>
+            <h5>$ {{ product.favorites + 10 }}.00</h5>
+            <p class="card-text">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet
+              numquam aspernatur!
+            </p>
+          </div>
+          <div class="card-footer" style="display: flex; align-items: center;justify-content: space-around;">
+            <button
+              class="btn btn-outline-secondary"
+              data-toggle="modal"
+              data-target="#exampleModalCenter"
+              (click)="dataModal(product)"
+            >
+              Ver producto
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.col-lg-9 -->
+</div>
+<!-- /.row -->
+
+<div
+  class="modal fade"
+  id="exampleModalCenter"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">
+          Product Id : {{ idProduct }}
+        </h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="mainDetail">
+          <div class="mainDetail-image">
+            <img
+              src="{{ imgPreview }}"
+              class="img-fluid rounded"
+              alt="Responsive image"
+            />
+          </div>
+          <div class="mainDetail-text">
+            <span
+              >Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the industry's standard dummy text
+              ever since the 1500s.</span
+            >
+            <div class="reviewss">
+              <small class="text-muted reviewsDetail"
+                >&#9733; &#9733; &#9733; &#9733; &#9734;</small
+              >
+              <span>({{ reviews }} Reviews)</span>
+            </div>
+            <div class="tags">
+              <span><i class="fa fa-tags" aria-hidden="true"></i></span>
+              <span style="margin-left: 3px">{{ tags }}</span>
+            </div>
+            <div class="propertys">
+              <span><i class="fa fa-eye" aria-hidden="true"></i></span>
+              <span style="margin-left: 3px">{{ views }} Vistas</span>
+            </div>
+            <div class="propertys">
+              <span><i class="fa fa-heart" aria-hidden="true"></i></span>
+              <span style="margin-left: 3px">{{ favorites }} Favoritos</span>
+            </div>
+            <div class="propertys">
+              <span><i class="fa fa-thumbs-up" aria-hidden="true"></i></span>
+              <span style="margin-left: 3px">{{ likes }} Me gusta</span>
+            </div>
+            <div class="propertys price">
+              <span>$ {{ price }}.00</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Cerrar
+        </button>
+        <!-- <button type="button" class="btn btn-primary" >
+            <i class="fa fa-shopping-cart " aria-hidden="true"><span style="font-family: Arial, Helvetica, sans-serif;"> Agregar al carrito</span> </i>
+        </button> -->
+      </div>
+    </div>
+  </div>
+</div>
