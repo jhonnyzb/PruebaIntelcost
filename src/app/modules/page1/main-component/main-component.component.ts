@@ -25,6 +25,7 @@ export class MainComponentComponent implements OnInit, OnDestroy {
   likes: number = 0;
   price: number = 0;
   show: boolean = false;
+  valid: string= 'noError'
 
   constructor(
     private services: AllServicesService,
@@ -56,7 +57,8 @@ export class MainComponentComponent implements OnInit, OnDestroy {
 
   searchProducts() {
     if (this.textSearch === "") {
-      this.textSearch = "tecnologia";
+      this.valid = 'Error'
+      return
     }
     this.SubscriptionGetSearch = this.services.getProductsSearch(this.textSearch).subscribe(
         (res: any) => {
@@ -99,6 +101,10 @@ export class MainComponentComponent implements OnInit, OnDestroy {
     this.favorites = product.favorites;
     this.likes = product.likes;
     this.price = product.favorites + 10;
+  }
+
+  clearValid(){
+    this.valid = 'noError'
   }
 
   ngOnDestroy() {

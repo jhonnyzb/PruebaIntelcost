@@ -16,34 +16,52 @@
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item my-1">
-            <a class="nav-link"  [routerLink]="['/Home']" routerLinkActive="active">Inicio</a>
-          </li>
-          <li class="nav-item my-1">
-            <a class="nav-link" [routerLink]="['/Servicios']" routerLinkActive="active" >Servicios</a>
-          </li>
-        <li class="nav-item active">
-            <div class="input-group my-1">
-                <input type="text" maxlength="100" class="form-control" placeholder="Buscar Producto" (keyup)="$event.keyCode == 13 ? callMethod() : null" [(ngModel)]="textSearch" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                <div class="input-group-append">
-                  <button class="btn btn-secondary" (click)='callMethod()' type="button">Buscar</button>
-                </div>
-              </div>
+          <a class="nav-link" [routerLink]="['/Home']" routerLinkActive="active"
+            >Inicio</a
+          >
         </li>
-       
+        <li class="nav-item my-1">
+          <a
+            class="nav-link"
+            [routerLink]="['/Servicios']"
+            routerLinkActive="active"
+            >Servicios</a
+          >
+        </li>
+        <li class="nav-item active">
+          <div class="input-group my-1">
+            <input
+              type="text"
+              maxlength="100"
+              class="form-control"
+              placeholder="Buscar Producto"
+              (keyup)="$event.keyCode == 13 ? callMethod() : clearValid()"
+              [(ngModel)]="textSearch"
+              aria-label="Recipient's username"
+              aria-describedby="basic-addon2"
+              [ngClass]="{'validateError': valid === 'Error','validateNotError':valid === 'noError'}"
+            />
+            <div class="input-group-append">
+              <button
+                class="btn btn-secondary"
+                (click)="callMethod()"
+                type="button"
+              >
+                Buscar
+              </button>
+            </div>
+          </div>
+        </li>
       </ul>
     </div>
   </div>
 </nav>
 
-
- <!-- Page Content -->
- <div class="container">
-    <router-outlet></router-outlet>
-  </div>
-  <!-- /.container -->
-
-
-
+<!-- Page Content -->
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
+<!-- /.container -->
 
 <!-- Footer -->
 <footer class="py-5 bg-dark">

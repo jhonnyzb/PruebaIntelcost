@@ -6,12 +6,13 @@
         <input
           type="text"
           class="form-control"
-          (keyup)="$event.keyCode == 13 ? searchProducts() : null"
+          (keyup)="$event.keyCode == 13 ? searchProducts() : clearValid()"
           placeholder="Buscar Producto"
           [(ngModel)]="textSearch"
           aria-label="Recipient's username"
           aria-describedby="basic-addon2"
           maxlength="100"
+          [ngClass]="{'validateError': valid === 'Error','validateNotError':valid === 'noError'}"
         />
         <div class="input-group-append">
           <button

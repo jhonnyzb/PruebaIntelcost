@@ -8,14 +8,22 @@ import { ServicesComunicacionService } from '../../services/services-comunicacio
 })
 export class MainLayoutComponent implements OnInit {
  textSearch: string = ''
- 
+ valid: string = 'noError'
   constructor(private comunicacion: ServicesComunicacionService) { }
 
   ngOnInit() {
   }
 
 
+  clearValid(){
+    this.valid = 'noError'
+  }
+
   callMethod(){
+    if (this.textSearch === "") {
+      this.valid = 'Error'
+      return
+    }
     this.comunicacion.callComponentMethod(this.textSearch);
   }
 

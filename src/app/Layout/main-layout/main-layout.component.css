@@ -1,0 +1,8 @@
+.validateError{
+    border: 2px solid red;
+    
+}
+
+.validateNotError{
+    border-color: gray;
+}
